@@ -10,6 +10,8 @@ interface EmotionData {
   neutral: number;
   sad: number;
   surprised: number;
+  stressed?: number;
+  bored?: number;
 }
 
 interface ForensicMetricsProps {
@@ -27,6 +29,8 @@ export function ForensicMetrics({ accuracy = 98.4, emotions }: ForensicMetricsPr
     neutral: 10,
     sad: 3,
     surprised: 2,
+    stressed: 5,
+    bored: 1,
   };
 
   const circumference = 2 * Math.PI * 60;
@@ -131,6 +135,8 @@ function getEmotionColor(emotion: string): string {
     case 'neutral': return 'bg-gray-400 shadow-[0_0_8px_#9ca3af]';
     case 'sad': return 'bg-blue-400 shadow-[0_0_8px_#60a5fa]';
     case 'disgust': return 'bg-orange-400 shadow-[0_0_8px_#fb923c]';
+    case 'stressed': return 'bg-rose-600 shadow-[0_0_8px_#e11d48]';
+    case 'bored': return 'bg-slate-500 shadow-[0_0_8px_#64748b]';
     default: return 'bg-primary';
   }
 }

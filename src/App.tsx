@@ -7,21 +7,15 @@ import { DangerDetection } from "./components/dashboard/DangerDetection";
 import { AudioVisualizer } from "./components/dashboard/AudioVisualizer";
 import { SettingsModal } from "./components/dashboard/SettingsModal";
 import { AnalysisHistory } from "./components/dashboard/AnalysisHistory";
+import { analyzeAudio, AnalysisResult } from "./lib/gemini";
 import { Plus } from "lucide-react";
-
-interface AnalysisResult {
-  accuracy: number;
-  dangerStatus: "CALM" | "DANGER";
-  dangerScore: number;
-  emotions: any;
-  metadata: any;
-}
 
 export type ProcessingStep = "idle" | "converting" | "predicting";
 export type ViewState = "dashboard" | "analysis";
 
 export default function App() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [geminiApiKey, setGeminiApiKey] = useState("");
   const [activeView, setActiveView] = useState<ViewState>("dashboard");
   const [searchQuery, setSearchQuery] = useState("");
   const [processingStep, setProcessingStep] = useState<ProcessingStep>("idle");
@@ -42,18 +36,12 @@ export default function App() {
     setProcessingStep("predicting");
 
     try {
-      const formData = new FormData();
-      formData.append("audio", file);
-
-      const response = await fetch("/api/analyze", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
+      const data = await analyzeAudio(file, geminiApiKey);
       setAnalysisData(data);
       setHistory(prev => [data, ...prev]);
     } catch (error) {
       console.error("Analysis failed:", error);
+      alert("Analysis failed. Check your API key in Settings if you are using live mode.");
     } finally {
       setProcessingStep("idle");
     }
@@ -73,7 +61,7 @@ export default function App() {
     
     // Check if the query matches any emotion name and that emotion has a significant value (> 15%)
     const emotionMatch = Object.entries(item.emotions).some(([emotion, value]) => 
-      emotion.toLowerCase().includes(query) && value > 15
+      emotion.toLowerCase().includes(query) && (value as number) > 15
     );
 
     return fileNameMatch || dangerMatch || emotionMatch;
@@ -156,6 +144,8 @@ export default function App() {
       <SettingsModal 
         isOpen={isSettingsOpen} 
         onClose={() => setIsSettingsOpen(false)} 
+        apiKey={geminiApiKey}
+        onApiKeyChange={setGeminiApiKey}
       />
     </div>
   );
