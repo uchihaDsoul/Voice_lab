@@ -1,43 +1,53 @@
 """
 Voice Lab – Local Inference Server
-Run: python app.py
-Serves on http://localhost:5000
-Place your model files alongside this script:
-  danger_model.keras, emotion_model.keras, le_dg.pkl, le_em.pkl, scaler.pkl
+Run:  python app.py
+Open: http://localhost:5000
+
+The server serves index.html at / AND handles /health and /analyze.
+This means the page and API share the same origin — no CORS or
+mixed-content issues, regardless of browser security settings.
+
+Place these files alongside app.py:
+  danger_model.keras  emotion_model.keras  le_dg.pkl  le_em.pkl  scaler.pkl
 """
 
-import os, io, warnings
+import os, io, warnings, webbrowser, threading, time
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 warnings.filterwarnings("ignore")
 
 import pickle
 import numpy as np
 import librosa
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import Flask, request, jsonify, send_from_directory
 import tensorflow as tf
 
-app = Flask(__name__)
-CORS(app)  # Allow the GitHub Pages frontend to call this local server
+BASE = os.path.dirname(os.path.abspath(__file__))
+app  = Flask(__name__, static_folder=BASE, static_url_path="")
 
 # ── Load models ──────────────────────────────────────────────────────────────
-BASE = os.path.dirname(os.path.abspath(__file__))
-
 def load_artifact(name):
     path = os.path.join(BASE, name)
     if not os.path.exists(path):
-        raise FileNotFoundError(f"Missing file: {path}\nPlace all model files next to app.py")
+        raise FileNotFoundError(
+            f"\n❌  Missing: {path}\n"
+            f"    Copy all 5 model files next to app.py and try again.\n"
+        )
     return path
 
 print("Loading models…")
-le_em  = pickle.load(open(load_artifact("le_em.pkl"),  "rb"))
-le_dg  = pickle.load(open(load_artifact("le_dg.pkl"),  "rb"))
-scaler = pickle.load(open(load_artifact("scaler.pkl"), "rb"))
+le_em    = pickle.load(open(load_artifact("le_em.pkl"),  "rb"))
+le_dg    = pickle.load(open(load_artifact("le_dg.pkl"),  "rb"))
+scaler   = pickle.load(open(load_artifact("scaler.pkl"), "rb"))
 em_model = tf.keras.models.load_model(load_artifact("emotion_model.keras"))
 dg_model = tf.keras.models.load_model(load_artifact("danger_model.keras"))
 print("Models ready ✓")
 
-# ── Feature extraction ────────────────────────────────────────────────────────
+# ── Serve the frontend ────────────────────────────────────────────────────────
+@app.route("/")
+def index():
+    return send_from_directory(BASE, "index.html")
+
+
 def extract_features(y: np.ndarray, sr: int) -> np.ndarray:
     """Returns a 84-dim feature vector matching the training pipeline."""
     mfcc  = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40)
@@ -139,4 +149,10 @@ def analyze():
     })
 
 if __name__ == "__main__":
+    url = "http://localhost:5000"
+    def _open():
+        time.sleep(1.2)
+        webbrowser.open(url)
+    threading.Thread(target=_open, daemon=True).start()
+    print(f"\n✅  Voice Lab running → {url}\n   (opening in your browser…)\n")
     app.run(host="0.0.0.0", port=5000, debug=False)
