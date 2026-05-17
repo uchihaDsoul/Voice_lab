@@ -4,11 +4,9 @@ import { motion, AnimatePresence } from "motion/react";
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  apiKey: string;
-  onApiKeyChange: (value: string) => void;
 }
 
-export function SettingsModal({ isOpen, onClose, apiKey, onApiKeyChange }: SettingsModalProps) {
+export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -39,23 +37,6 @@ export function SettingsModal({ isOpen, onClose, apiKey, onApiKeyChange }: Setti
             </div>
 
             <div className="p-6 space-y-8">
-              <section className="space-y-4">
-                <h3 className="text-xs uppercase tracking-widest text-primary font-bold">Cloud Infrastructure</h3>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase font-bold text-on-surface-variant ml-1">Gemini API Key</label>
-                  <input 
-                    type="password"
-                    value={apiKey}
-                    onChange={(e) => onApiKeyChange(e.target.value)}
-                    placeholder="Enter your Google AI Studio API Key..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary transition-all placeholder:text-on-surface-variant/30"
-                  />
-                  <p className="text-[9px] text-on-surface-variant leading-relaxed px-1">
-                    Required for live forensic analysis on GitHub Pages. If left empty, the system will operate in Forensic Simulation mode.
-                  </p>
-                </div>
-              </section>
-
               <section className="space-y-4">
                 <h3 className="text-xs uppercase tracking-widest text-primary font-bold">Neural Models</h3>
                 <div className="space-y-3">

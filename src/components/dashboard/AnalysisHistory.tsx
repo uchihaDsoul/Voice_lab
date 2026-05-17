@@ -24,7 +24,7 @@ interface AnalysisHistoryProps {
 export function AnalysisHistory({ items, searchTerm, onSearchChange }: AnalysisHistoryProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const emotions = ["Angry", "Calm", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprised", "Stressed", "Bored"];
+  const emotions = ["Angry", "Calm", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprised"];
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
