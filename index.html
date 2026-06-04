@@ -12,32 +12,31 @@
    CSS VARIABLES & RESET
 ═══════════════════════════════════════════════════════ */
 :root {
-  --bg:          #0a0b0f;
-  --bg2:         #0f1117;
-  --bg3:         #161820;
-  --surface:     #1a1d27;
-  --surface2:    #212433;
-  --border:      rgba(255,255,255,.07);
-  --border2:     rgba(255,255,255,.12);
-  --text:        #e8eaf0;
-  --text2:       #8b90a8;
-  --text3:       #555a72;
-  --accent:      #4f6fff;
-  --accent2:     #7b61ff;
-  --cyan:        #00d4c8;
-  --pink:        #ff4fa0;
-  --green:       #00e676;
-  --amber:       #ffb340;
-  --red:         #ff4545;
-  --glow:        rgba(79,111,255,.35);
-  --glow-cyan:   rgba(0,212,200,.3);
-  --font-head:   'Syne', sans-serif;
-  --font-mono:   'IBM Plex Mono', monospace;
-  --font-alt:    'Space Mono', monospace;
-  --r:           10px;
-  --r2:          16px;
+  --bg: #0a0b0f;
+  --bg2: #0f1117;
+  --bg3: #161820;
+  --surface: #1a1d27;
+  --surface2: #212433;
+  --border: rgba(255,255,255,.07);
+  --border2: rgba(255,255,255,.12);
+  --text: #e8eaf0;
+  --text2: #8b90a8;
+  --text3: #555a72;
+  --accent: #4f6fff;
+  --accent2: #7b61ff;
+  --cyan: #00d4c8;
+  --pink: #ff4fa0;
+  --green: #00e676;
+  --amber: #ffb340;
+  --red: #ff4545;
+  --glow: rgba(79,111,255,.35);
+  --glow-cyan: rgba(0,212,200,.3);
+  --font-head: 'Syne', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-alt: 'Space Mono', monospace;
+  --r: 10px;
+  --r2: 16px;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 14px; scroll-behavior: smooth; }
 body {
@@ -47,296 +46,81 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-
-/* ═══════════════════════════════════════════════════════
-   SCROLLBAR
-═══════════════════════════════════════════════════════ */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg2); }
 ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
 
 /* ═══════════════════════════════════════════════════════
-   LAYOUT: SIDEBAR + MAIN
+   LAYOUT
 ═══════════════════════════════════════════════════════ */
 .shell { display: flex; height: 100vh; overflow: hidden; }
 
-/* ─── Sidebar ─── */
+/* Sidebar */
 .sidebar {
-  width: 220px;
-  flex-shrink: 0;
+  width: 220px; flex-shrink: 0;
   background: var(--bg2);
   border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  position: relative;
-  z-index: 10;
+  display: flex; flex-direction: column;
+  position: relative; z-index: 10;
 }
-
-.sidebar-logo {
-  padding: 22px 22px 16px;
-  border-bottom: 1px solid var(--border);
-}
-.sidebar-logo h1 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -.02em;
-  color: var(--text);
-}
-.sidebar-logo p {
-  font-size: .65rem;
-  color: var(--text3);
-  font-family: var(--font-mono);
-  margin-top: 3px;
-  letter-spacing: .06em;
-}
-
-.sidebar-section {
-  padding: 18px 14px 8px;
-}
-.sidebar-section-label {
-  font-size: .55rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--text3);
-  padding: 0 8px 8px;
-  font-family: var(--font-mono);
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: .8rem;
-  font-weight: 500;
-  color: var(--text2);
-  transition: all .15s;
-  user-select: none;
-}
+.sidebar-logo { padding: 22px 22px 16px; border-bottom: 1px solid var(--border); }
+.sidebar-logo h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -.02em; color: var(--text); }
+.sidebar-logo p { font-size: .65rem; color: var(--text3); font-family: var(--font-mono); margin-top: 3px; letter-spacing: .06em; }
+.sidebar-section { padding: 18px 14px 8px; }
+.sidebar-section-label { font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); padding: 0 8px 8px; font-family: var(--font-mono); }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; cursor: pointer; font-size: .8rem; font-weight: 500; color: var(--text2); transition: all .15s; user-select: none; }
 .nav-item:hover { background: var(--surface); color: var(--text); }
-.nav-item.active {
-  background: rgba(79,111,255,.15);
-  color: var(--accent);
-}
+.nav-item.active { background: rgba(79,111,255,.15); color: var(--accent); }
 .nav-item svg { flex-shrink: 0; }
-
-.sidebar-bottom {
-  margin-top: auto;
-  padding: 14px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.new-session-btn {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: .8rem;
-  font-family: var(--font-head);
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  transition: all .2s;
-  width: 100%;
-}
+.sidebar-bottom { margin-top: auto; padding: 14px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+.new-session-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 10px 14px; font-size: .8rem; font-family: var(--font-head); font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: all .2s; width: 100%; }
 .new-session-btn:hover { background: #5f7fff; box-shadow: 0 0 20px var(--glow); }
-
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .75rem;
-  color: var(--text3);
-  padding: 6px 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: color .15s;
-}
+.sidebar-link { display: flex; align-items: center; gap: 8px; font-size: .75rem; color: var(--text3); padding: 6px 8px; border-radius: 6px; cursor: pointer; transition: color .15s; }
 .sidebar-link:hover { color: var(--text2); }
 
-/* ─── Topbar ─── */
-.topbar {
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 28px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg2);
-  flex-shrink: 0;
-  gap: 16px;
-}
-.topbar-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 7px 14px;
-  flex: 1;
-  max-width: 320px;
-}
-.topbar-search input {
-  background: none;
-  border: none;
-  outline: none;
-  color: var(--text);
-  font-size: .78rem;
-  font-family: var(--font-head);
-  width: 100%;
-}
+/* Topbar */
+.topbar { height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; border-bottom: 1px solid var(--border); background: var(--bg2); flex-shrink: 0; gap: 16px; }
+.topbar-search { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; flex: 1; max-width: 320px; }
+.topbar-search input { background: none; border: none; outline: none; color: var(--text); font-size: .78rem; font-family: var(--font-head); width: 100%; }
 .topbar-search input::placeholder { color: var(--text3); }
 .topbar-icons { display: flex; align-items: center; gap: 8px; }
-.icon-btn {
-  width: 34px; height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text2);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all .15s;
-}
+.icon-btn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text2); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .15s; }
 .icon-btn:hover { background: var(--surface2); color: var(--text); }
+.server-status { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 20px; font-size: .65rem; font-family: var(--font-mono); letter-spacing: .04em; border: 1px solid; margin-left: 12px; cursor: pointer; transition: all .2s; }
+.server-status.disconnected { background: rgba(255,69,69,.1); border-color: rgba(255,69,69,.3); color: var(--red); }
+.server-status.connected { background: rgba(0,230,118,.1); border-color: rgba(0,230,118,.3); color: var(--green); }
+.server-status.checking { background: rgba(255,179,64,.1); border-color: rgba(255,179,64,.3); color: var(--amber); }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
 
-/* ─── Main scroll area ─── */
+/* Main */
 .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 .content { flex: 1; overflow-y: auto; padding: 32px 28px 40px; }
 
-/* ─── Server status pill ─── */
-.server-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: .65rem;
-  font-family: var(--font-mono);
-  letter-spacing: .04em;
-  border: 1px solid;
-  margin-left: 12px;
-  cursor: pointer;
-  transition: all .2s;
-}
-.server-status.disconnected {
-  background: rgba(255,69,69,.1);
-  border-color: rgba(255,69,69,.3);
-  color: var(--red);
-}
-.server-status.connected {
-  background: rgba(0,230,118,.1);
-  border-color: rgba(0,230,118,.3);
-  color: var(--green);
-}
-.server-status.checking {
-  background: rgba(255,179,64,.1);
-  border-color: rgba(255,179,64,.3);
-  color: var(--amber);
-}
-.status-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: pulse-dot 2s infinite;
-}
-@keyframes pulse-dot {
-  0%,100% { opacity: 1; }
-  50% { opacity: .4; }
-}
-
-/* ─── Page header ─── */
+/* Page header */
 .page-header { margin-bottom: 28px; }
-.page-header h2 {
-  font-size: 2.4rem;
-  font-weight: 800;
-  letter-spacing: -.03em;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.page-header p {
-  color: var(--text2);
-  font-size: .82rem;
-  margin-top: 8px;
-  max-width: 520px;
-  line-height: 1.55;
-}
+.page-header h2 { font-size: 2.4rem; font-weight: 800; letter-spacing: -.03em; line-height: 1; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.page-header p { color: var(--text2); font-size: .82rem; margin-top: 8px; max-width: 520px; line-height: 1.55; }
 
 /* ═══════════════════════════════════════════════════════
    DROP ZONE
 ═══════════════════════════════════════════════════════ */
-.drop-zone {
-  border: 1.5px dashed var(--border2);
-  border-radius: var(--r2);
-  background: var(--bg2);
-  padding: 48px 32px;
-  text-align: center;
-  cursor: pointer;
-  transition: all .25s;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 22px;
-}
-.drop-zone::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(79,111,255,.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-.drop-zone:hover, .drop-zone.dragging {
-  border-color: var(--accent);
-  background: rgba(79,111,255,.05);
-  box-shadow: 0 0 40px rgba(79,111,255,.12);
-}
-.drop-icon {
-  width: 54px; height: 54px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  color: var(--text2);
-}
-.drop-zone h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-.drop-zone p {
-  font-size: .75rem;
-  color: var(--text3);
-  margin-bottom: 20px;
-  font-family: var(--font-mono);
-}
+.drop-zone { border: 1.5px dashed var(--border2); border-radius: var(--r2); background: var(--bg2); padding: 48px 32px; text-align: center; cursor: pointer; transition: all .25s; position: relative; overflow: hidden; margin-bottom: 22px; }
+.drop-zone::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(79,111,255,.06) 0%, transparent 70%); pointer-events: none; }
+.drop-zone:hover, .drop-zone.dragging { border-color: var(--accent); background: rgba(79,111,255,.05); box-shadow: 0 0 40px rgba(79,111,255,.12); }
+.drop-icon { width: 54px; height: 54px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border2); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--text2); }
+.drop-zone h3 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+.drop-zone p { font-size: .75rem; color: var(--text3); margin-bottom: 20px; font-family: var(--font-mono); }
 .drop-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 9px 22px;
-  font-size: .8rem;
-  font-family: var(--font-head);
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .2s;
-}
+.btn-primary { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 22px; font-size: .8rem; font-family: var(--font-head); font-weight: 700; cursor: pointer; transition: all .2s; }
 .btn-primary:hover { background: #5f7fff; box-shadow: 0 0 20px var(--glow); }
-.btn-secondary {
+.btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); border-radius: 8px; padding: 9px 18px; font-size: .78rem; font-family: var(--font-mono); cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all .2s; }
+.btn-secondary:hover { background: var(--surface2); color: var(--text); }
+
+/* ═══════════════════════════════════════════════════════
+   LIVE RECORDING BUTTON
+═══════════════════════════════════════════════════════ */
+.btn-record {
   background: var(--surface);
   color: var(--text2);
   border: 1px solid var(--border2);
@@ -349,403 +133,189 @@ body {
   align-items: center;
   gap: 7px;
   transition: all .2s;
+  position: relative;
 }
-.btn-secondary:hover { background: var(--surface2); color: var(--text); }
+.btn-record:hover { background: rgba(255,69,69,.1); border-color: rgba(255,69,69,.4); color: var(--red); }
+.btn-record.recording {
+  background: rgba(255,69,69,.15);
+  border-color: var(--red);
+  color: var(--red);
+  box-shadow: 0 0 18px rgba(255,69,69,.25);
+}
+.btn-record .rec-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  transition: all .2s;
+}
+.btn-record.recording .rec-dot {
+  animation: rec-pulse 1s ease-in-out infinite;
+}
+@keyframes rec-pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .4; transform: scale(.7); }
+}
+.btn-record .rec-timer {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  min-width: 36px;
+  display: none;
+}
+.btn-record.recording .rec-timer { display: inline; }
+
+/* Live recording meter strip (shown while recording) */
+.rec-meter-wrap {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg3);
+  border: 1px solid rgba(255,69,69,.25);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-top: 12px;
+}
+.rec-meter-wrap.show { display: flex; }
+.rec-meter-label { font-size: .6rem; font-family: var(--font-mono); color: var(--red); letter-spacing: .08em; text-transform: uppercase; flex-shrink: 0; }
+.rec-meter-bars { display: flex; align-items: flex-end; gap: 2px; height: 28px; flex: 1; }
+.rec-bar {
+  flex: 1;
+  background: var(--red);
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  opacity: .7;
+  transition: height .05s linear;
+}
+.rec-meter-tip { font-size: .6rem; font-family: var(--font-mono); color: var(--text3); flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════════════════
-   METRIC CARDS GRID
+   METRIC CARDS
 ═══════════════════════════════════════════════════════ */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr 1fr;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-@media (max-width: 900px) {
-  .metrics-grid { grid-template-columns: 1fr 1fr; }
-}
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r2);
-  padding: 20px 22px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color .2s;
-}
+.metrics-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 16px; margin-bottom: 16px; }
+@media (max-width: 900px) { .metrics-grid { grid-template-columns: 1fr 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 20px 22px; position: relative; overflow: hidden; transition: border-color .2s; }
 .card:hover { border-color: var(--border2); }
-.card-label {
-  font-size: .6rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  font-family: var(--font-mono);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.card-icon {
-  width: 22px; height: 22px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text3);
-}
+.card-label { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); font-family: var(--font-mono); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+.card-icon { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: var(--text3); }
 
-/* ─── Donut chart ─── */
-.donut-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
+/* Donut */
+.donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .donut-container { position: relative; width: 140px; height: 140px; }
 .donut-svg { transform: rotate(-90deg); }
 .donut-track { fill: none; stroke: var(--surface2); stroke-width: 12; }
-.donut-fill {
-  fill: none;
-  stroke-width: 12;
-  stroke-linecap: round;
-  stroke: var(--accent);
-  stroke-dasharray: 389;
-  stroke-dashoffset: 389;
-  filter: drop-shadow(0 0 8px var(--glow));
-  transition: stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);
-}
-.donut-center {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.donut-val {
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1;
-  font-family: var(--font-alt);
-}
+.donut-fill { fill: none; stroke-width: 12; stroke-linecap: round; stroke: var(--accent); stroke-dasharray: 389; stroke-dashoffset: 389; filter: drop-shadow(0 0 8px var(--glow)); transition: stroke-dashoffset 1s cubic-bezier(.4,0,.2,1); }
+.donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.donut-val { font-size: 2rem; font-weight: 800; line-height: 1; font-family: var(--font-alt); }
 .donut-val sup { font-size: .9rem; }
-.donut-sub {
-  font-size: .5rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  font-family: var(--font-mono);
-  margin-top: 2px;
-}
-.donut-meta {
-  display: flex;
-  gap: 24px;
-  width: 100%;
-}
+.donut-sub { font-size: .5rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); font-family: var(--font-mono); margin-top: 2px; }
+.donut-meta { display: flex; gap: 24px; width: 100%; }
 .donut-meta-item { flex: 1; }
-.donut-meta-item span:first-child {
-  display: block;
-  font-size: .6rem;
-  color: var(--text3);
-  font-family: var(--font-mono);
-  margin-bottom: 3px;
-}
-.donut-meta-item span:last-child {
-  font-size: .85rem;
-  font-weight: 700;
-  font-family: var(--font-alt);
-}
-.val-green  { color: var(--green); }
+.donut-meta-item span:first-child { display: block; font-size: .6rem; color: var(--text3); font-family: var(--font-mono); margin-bottom: 3px; }
+.donut-meta-item span:last-child { font-size: .85rem; font-weight: 700; font-family: var(--font-alt); }
+.val-green { color: var(--green); }
 .val-accent { color: var(--accent); }
-.val-cyan   { color: var(--cyan); }
-.val-amber  { color: var(--amber); }
-.val-red    { color: var(--red); }
-.val-pink   { color: var(--pink); }
+.val-cyan { color: var(--cyan); }
+.val-amber { color: var(--amber); }
+.val-red { color: var(--red); }
+.val-pink { color: var(--pink); }
 
-/* ─── Sentiment bars ─── */
+/* Bars */
 .bar-list { display: flex; flex-direction: column; gap: 11px; }
-.bar-item {}
-.bar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-.bar-name {
-  font-size: .72rem;
-  font-weight: 500;
-  text-transform: capitalize;
-}
-.bar-pct {
-  font-size: .7rem;
-  font-family: var(--font-mono);
-  font-weight: 700;
-}
-.bar-track {
-  height: 5px;
-  background: var(--surface2);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  width: 0%;
-  transition: width 1s cubic-bezier(.4,0,.2,1);
-}
+.bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.bar-name { font-size: .72rem; font-weight: 500; text-transform: capitalize; }
+.bar-pct { font-size: .7rem; font-family: var(--font-mono); font-weight: 700; }
+.bar-track { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; width: 0%; transition: width 1s cubic-bezier(.4,0,.2,1); }
 
-/* ─── Pie / distribution ─── */
+/* Pie */
 .dist-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 .pie-container { position: relative; width: 130px; height: 130px; }
-.pie-label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+.pie-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .pie-main { font-size: .95rem; font-weight: 800; }
-.pie-sub  { font-size: .55rem; color: var(--text3); font-family: var(--font-mono); letter-spacing: .05em; }
+.pie-sub { font-size: .55rem; color: var(--text3); font-family: var(--font-mono); letter-spacing: .05em; }
 .legend { display: flex; flex-direction: column; gap: 7px; width: 100%; }
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .72rem;
-  color: var(--text2);
-}
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: .72rem; color: var(--text2); }
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════════════════
    WAVEFORM CARD
 ═══════════════════════════════════════════════════════ */
-.wave-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r2);
-  padding: 20px 22px;
-  margin-top: 16px;
-}
-.wave-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+.wave-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 20px 22px; margin-top: 16px; }
+.wave-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
 .wave-title-group { display: flex; align-items: center; gap: 14px; }
-.play-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  color: var(--text);
-  transition: all .2s;
-  flex-shrink: 0;
-}
+.play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); transition: all .2s; flex-shrink: 0; }
 .play-btn:hover { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 14px var(--glow); }
 .wave-file-name { font-size: .9rem; font-weight: 700; }
 .wave-capture { font-size: .65rem; color: var(--text3); font-family: var(--font-mono); margin-top: 2px; }
 .wave-meta-pills { display: flex; gap: 10px; flex-wrap: wrap; }
-.meta-pill {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 7px 16px;
-  text-align: center;
-}
+.meta-pill { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 7px 16px; text-align: center; }
 .meta-pill-label { font-size: .55rem; color: var(--text3); font-family: var(--font-mono); letter-spacing: .06em; }
-.meta-pill-val   { font-size: .85rem; font-weight: 700; font-family: var(--font-alt); margin-top: 2px; }
-.waveform-canvas-wrap {
-  position: relative;
-  height: 80px;
-  background: var(--bg2);
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 12px 0;
-}
+.meta-pill-val { font-size: .85rem; font-weight: 700; font-family: var(--font-alt); margin-top: 2px; }
+.waveform-canvas-wrap { position: relative; height: 80px; background: var(--bg2); border-radius: 8px; overflow: hidden; margin: 12px 0; }
 canvas.waveform-canvas { width: 100%; height: 100%; }
-.wave-times {
-  display: flex;
-  justify-content: space-between;
-  font-size: .62rem;
-  color: var(--text3);
-  font-family: var(--font-mono);
-}
-.wave-dl-btn {
-  background: none;
-  border: none;
-  color: var(--text2);
-  cursor: pointer;
-  padding: 4px;
-  transition: color .15s;
-}
+.wave-times { display: flex; justify-content: space-between; font-size: .62rem; color: var(--text3); font-family: var(--font-mono); }
+.wave-dl-btn { background: none; border: none; color: var(--text2); cursor: pointer; padding: 4px; transition: color .15s; }
 .wave-dl-btn:hover { color: var(--text); }
 
 /* ═══════════════════════════════════════════════════════
-   EMOTION TIMELINE CARD
+   TIMELINE CARD
 ═══════════════════════════════════════════════════════ */
-.timeline-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r2);
-  padding: 20px 22px;
-  margin-top: 16px;
-}
-.timeline-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.timeline-title {
-  font-size: .6rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  font-family: var(--font-mono);
-}
+.timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 20px 22px; margin-top: 16px; }
+.timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.timeline-title { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); font-family: var(--font-mono); }
 .timeline-body { overflow-x: auto; }
 .timeline-list { display: flex; gap: 6px; min-width: max-content; flex-wrap: wrap; }
-.timeline-seg {
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: .62rem;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  border: 1px solid rgba(255,255,255,.08);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.timeline-seg-t  { font-size: .55rem; color: var(--text3); }
+.timeline-seg { padding: 5px 10px; border-radius: 6px; font-size: .62rem; font-family: var(--font-mono); font-weight: 500; border: 1px solid rgba(255,255,255,.08); display: flex; flex-direction: column; gap: 2px; }
+.timeline-seg-t { font-size: .55rem; color: var(--text3); }
 .timeline-seg-em { text-transform: uppercase; letter-spacing: .05em; }
 
 /* ═══════════════════════════════════════════════════════
-   LOADING / ANALYZING OVERLAY
+   ANALYZING OVERLAY
 ═══════════════════════════════════════════════════════ */
-.analyzing-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(10,11,15,.75);
-  backdrop-filter: blur(6px);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 18px;
-}
+.analyzing-overlay { display: none; position: fixed; inset: 0; background: rgba(10,11,15,.75); backdrop-filter: blur(6px); z-index: 100; align-items: center; justify-content: center; flex-direction: column; gap: 18px; }
 .analyzing-overlay.show { display: flex; }
-.analyzing-spinner {
-  width: 56px; height: 56px;
-  border: 3px solid var(--surface2);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-}
+.analyzing-spinner { width: 56px; height: 56px; border: 3px solid var(--surface2); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.analyzing-overlay p {
-  font-size: .85rem;
-  font-family: var(--font-mono);
-  color: var(--text2);
-  letter-spacing: .05em;
-}
+.analyzing-overlay p { font-size: .85rem; font-family: var(--font-mono); color: var(--text2); letter-spacing: .05em; }
 
 /* ═══════════════════════════════════════════════════════
    DANGER BADGE
 ═══════════════════════════════════════════════════════ */
-.danger-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: .65rem;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  border: 1px solid;
-}
-.danger-badge.calm   { background: rgba(0,230,118,.1); border-color: rgba(0,230,118,.3); color: var(--green); }
-.danger-badge.danger { background: rgba(255,69,69,.1);  border-color: rgba(255,69,69,.3);  color: var(--red); }
+.danger-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: .65rem; font-family: var(--font-mono); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border: 1px solid; }
+.danger-badge.calm { background: rgba(0,230,118,.1); border-color: rgba(0,230,118,.3); color: var(--green); }
+.danger-badge.danger { background: rgba(255,69,69,.1); border-color: rgba(255,69,69,.3); color: var(--red); }
 
-/* ═══════════════════════════════════════════════════════
-   EMPTY STATE
-═══════════════════════════════════════════════════════ */
-.empty-results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 32px;
-  color: var(--text3);
-  font-size: .8rem;
-  font-family: var(--font-mono);
-  gap: 12px;
-  text-align: center;
-}
+/* Empty state */
+.empty-results { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 32px; color: var(--text3); font-size: .8rem; font-family: var(--font-mono); gap: 12px; text-align: center; }
 .empty-icon { font-size: 2.5rem; opacity: .3; }
 
-/* ═══════════════════════════════════════════════════════
-   TOAST
-═══════════════════════════════════════════════════════ */
-.toast-container {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.toast {
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  padding: 12px 18px;
-  font-size: .75rem;
-  font-family: var(--font-mono);
-  color: var(--text);
-  animation: slide-up .3s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  max-width: 320px;
-}
+/* Toast */
+.toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 8px; }
+.toast { background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; padding: 12px 18px; font-size: .75rem; font-family: var(--font-mono); color: var(--text); animation: slide-up .3s ease; display: flex; align-items: center; gap: 10px; max-width: 320px; }
 .toast.error { border-color: rgba(255,69,69,.4); background: rgba(255,69,69,.1); color: var(--red); }
 .toast.success { border-color: rgba(0,230,118,.4); background: rgba(0,230,118,.08); color: var(--green); }
-@keyframes slide-up {
-  from { transform: translateY(20px); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
-}
+@keyframes slide-up { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* ═══════════════════════════════════════════════════════
-   EMOTION COLOR MAP
-═══════════════════════════════════════════════════════ */
-.em-angry    { color: var(--red);    background: rgba(255,69,69,.15);    border-color: rgba(255,69,69,.3); }
-.em-calm     { color: var(--cyan);   background: rgba(0,212,200,.12);    border-color: rgba(0,212,200,.3); }
-.em-disgust  { color: var(--amber);  background: rgba(255,179,64,.12);   border-color: rgba(255,179,64,.3); }
-.em-fear     { color: var(--pink);   background: rgba(255,79,160,.12);   border-color: rgba(255,79,160,.3); }
-.em-happy    { color: #ffe066;       background: rgba(255,224,102,.1);   border-color: rgba(255,224,102,.3); }
-.em-neutral  { color: var(--text2);  background: rgba(139,144,168,.1);   border-color: rgba(139,144,168,.2); }
-.em-sad      { color: var(--accent2);background: rgba(123,97,255,.12);   border-color: rgba(123,97,255,.3); }
-.em-surprised{ color: var(--green);  background: rgba(0,230,118,.1);     border-color: rgba(0,230,118,.3); }
+/* Emotion colours */
+.em-angry    { color: var(--red);   background: rgba(255,69,69,.15);  border-color: rgba(255,69,69,.3);   }
+.em-calm     { color: var(--cyan);  background: rgba(0,212,200,.12);  border-color: rgba(0,212,200,.3);   }
+.em-disgust  { color: var(--amber); background: rgba(255,179,64,.12); border-color: rgba(255,179,64,.3);  }
+.em-fear     { color: var(--pink);  background: rgba(255,79,160,.12); border-color: rgba(255,79,160,.3);  }
+.em-happy    { color: #ffe066;      background: rgba(255,224,102,.1); border-color: rgba(255,224,102,.3); }
+.em-neutral  { color: var(--text2); background: rgba(139,144,168,.1); border-color: rgba(139,144,168,.2); }
+.em-sad      { color: var(--accent2);background:rgba(123,97,255,.12); border-color: rgba(123,97,255,.3);  }
+.em-surprised{ color: var(--green); background: rgba(0,230,118,.1);  border-color: rgba(0,230,118,.3);   }
 </style>
 </head>
 <body>
-
 <div class="shell">
-<!-- ═══════════════════════════════════════ SIDEBAR ═══ -->
+
+<!-- ════════════════════════ SIDEBAR ════════════════════════ -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <h1>Voice Lab</h1>
     <p>V-01 PROTOCOL</p>
   </div>
-
   <div class="sidebar-section">
     <p class="sidebar-section-label">Navigation</p>
     <div class="nav-item active" onclick="showPage('dashboard')">
@@ -765,7 +335,6 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
       Settings
     </div>
   </div>
-
   <div class="sidebar-bottom">
     <button class="new-session-btn" onclick="resetSession()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -782,8 +351,9 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
   </div>
 </aside>
 
-<!-- ═══════════════════════════════════════ MAIN ═══ -->
+<!-- ════════════════════════ MAIN ════════════════════════ -->
 <div class="main">
+
   <!-- Topbar -->
   <div class="topbar">
     <div class="topbar-search">
@@ -795,26 +365,17 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
       <span id="serverStatusText">Server offline</span>
     </div>
     <div class="topbar-icons">
-      <div class="icon-btn">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-14.14 0M4.93 19.07a10 10 0 0 0 14.14 0"/></svg>
-      </div>
-      <div class="icon-btn">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      </div>
-      <div class="icon-btn">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </div>
+      <div class="icon-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-14.14 0M4.93 19.07a10 10 0 0 0 14.14 0"/></svg></div>
+      <div class="icon-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
+      <div class="icon-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
     </div>
   </div>
 
   <!-- Content -->
   <div class="content">
     <div class="page-header">
-      <h2>
-        Acoustic Verification
-        <span id="dangerBadgeHeader"></span>
-      </h2>
-      <p>Execute high-precision forensic analysis on captured vocal data streams. Protocols are active for multi-modal frequency detection.</p>
+      <h2>Acoustic Verification <span id="dangerBadgeHeader"></span></h2>
+      <p>Execute high-precision forensic analysis on captured vocal data streams. Record live or upload a file — protocols are active for multi-modal frequency detection.</p>
     </div>
 
     <!-- Drop zone -->
@@ -827,9 +388,18 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
       </div>
       <h3>Drop Audio Streams Here</h3>
-      <p>Supports WAV, FLAC, MP3, OGG (Max 500 MB)</p>
+      <p>Supports WAV, FLAC, MP3, OGG, M4A · or record directly from your microphone</p>
       <div class="drop-actions">
+        <!-- Upload -->
         <button class="btn-primary" onclick="event.stopPropagation(); document.getElementById('fileInput').click()">Upload Audio</button>
+
+        <!-- ── LIVE RECORD BUTTON ── -->
+        <button class="btn-record" id="recordBtn" onclick="event.stopPropagation(); toggleRecording()">
+          <span class="rec-dot"></span>
+          <span id="recordBtnLabel">Record Live</span>
+          <span class="rec-timer" id="recTimer">0:00</span>
+        </button>
+
         <button class="btn-secondary" onclick="event.stopPropagation()">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
           Auto-converting to WAV
@@ -838,27 +408,30 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
       <input type="file" id="fileInput" accept=".wav,.mp3,.flac,.ogg,.m4a" style="display:none" onchange="handleFileSelect(event)"/>
     </div>
 
+    <!-- Live recording meter (visible only while recording) -->
+    <div class="rec-meter-wrap" id="recMeterWrap">
+      <span class="rec-meter-label">● REC</span>
+      <div class="rec-meter-bars" id="recMeterBars"></div>
+      <span class="rec-meter-tip">Stop to auto-analyze</span>
+    </div>
+
     <!-- Results -->
     <div id="resultsSection">
-      <!-- Empty state (default) -->
+      <!-- Empty state -->
       <div id="emptyState" class="empty-results">
         <div class="empty-icon">🎙️</div>
-        <div>Upload an audio file to begin forensic analysis</div>
-        <div style="font-size:.65rem;color:var(--text3)">Run <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:var(--font-mono)">python app.py</code> then open <strong>http://localhost:5000</strong></div>
+        <div>Upload a file or record live to begin forensic analysis</div>
+        <div style="font-size:.65rem;color:var(--text3)">Make sure <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:var(--font-mono)">python app.py</code> is running on <strong>http://localhost:5000</strong></div>
       </div>
 
-      <!-- Data panels (hidden until analysis) -->
+      <!-- Data panels -->
       <div id="dataPanels" style="display:none">
-        <!-- Metrics grid -->
         <div class="metrics-grid">
-
           <!-- Accuracy meter -->
           <div class="card">
             <div class="card-label">
               Accuracy Meter
-              <div class="card-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              </div>
+              <div class="card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
             </div>
             <div class="donut-wrap">
               <div class="donut-container">
@@ -872,14 +445,8 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
                 </div>
               </div>
               <div class="donut-meta">
-                <div class="donut-meta-item">
-                  <span>False Positive</span>
-                  <span id="fpVal" class="val-red">–</span>
-                </div>
-                <div class="donut-meta-item">
-                  <span>Latency</span>
-                  <span id="latVal" class="val-accent">–</span>
-                </div>
+                <div class="donut-meta-item"><span>False Positive</span><span id="fpVal" class="val-red">–</span></div>
+                <div class="donut-meta-item"><span>Latency</span><span id="latVal" class="val-accent">–</span></div>
               </div>
             </div>
           </div>
@@ -888,32 +455,26 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
           <div class="card">
             <div class="card-label">
               Sentiment Analysis
-              <div class="card-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-              </div>
+              <div class="card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
             </div>
-            <div class="bar-list" id="sentimentBars">
-              <!-- populated by JS -->
-            </div>
+            <div class="bar-list" id="sentimentBars"></div>
           </div>
 
           <!-- Audio distribution -->
           <div class="card">
             <div class="card-label">
               Audio Distribution
-              <div class="card-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
-              </div>
+              <div class="card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></div>
             </div>
             <div class="dist-wrap">
               <div class="pie-container">
-                <svg width="130" height="130" viewBox="0 0 130 130" id="pieSvg"><!-- drawn by JS --></svg>
+                <svg width="130" height="130" viewBox="0 0 130 130" id="pieSvg"></svg>
                 <div class="pie-label">
                   <div class="pie-main" id="pieMain">–</div>
                   <div class="pie-sub" id="pieSub">–</div>
                 </div>
               </div>
-              <div class="legend" id="pieLegend"><!-- populated by JS --></div>
+              <div class="legend" id="pieLegend"></div>
             </div>
           </div>
         </div>
@@ -931,14 +492,8 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
               </div>
             </div>
             <div class="wave-meta-pills">
-              <div class="meta-pill">
-                <div class="meta-pill-label">SAMPLE RATE</div>
-                <div class="meta-pill-val" id="sampleRateVal">–</div>
-              </div>
-              <div class="meta-pill">
-                <div class="meta-pill-label">DURATION</div>
-                <div class="meta-pill-val" id="durationVal">–</div>
-              </div>
+              <div class="meta-pill"><div class="meta-pill-label">SAMPLE RATE</div><div class="meta-pill-val" id="sampleRateVal">–</div></div>
+              <div class="meta-pill"><div class="meta-pill-label">DURATION</div><div class="meta-pill-val" id="durationVal">–</div></div>
               <button class="wave-dl-btn" onclick="downloadAudio()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </button>
@@ -971,7 +526,7 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
 </div><!-- /main -->
 </div><!-- /shell -->
 
-<!-- Server help banner — shown when no server found -->
+<!-- Server help banner -->
 <div id="serverBanner" style="display:none; position:fixed; top:58px; left:220px; right:0; z-index:50;
      background:rgba(255,69,69,.08); border-bottom:1px solid rgba(255,69,69,.25);
      padding:14px 28px; align-items:center; gap:16px; flex-wrap:wrap;">
@@ -980,8 +535,7 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
     <div style="font-size:.75rem; font-weight:700; color:#ff4545; font-family:var(--font-head)">Cannot reach inference server</div>
     <div style="font-size:.67rem; color:var(--text2); font-family:var(--font-mono); margin-top:3px">
       Run <code style="background:var(--surface2);padding:1px 6px;border-radius:4px">python app.py</code>
-      then open the URL it prints (e.g. <strong>http://localhost:5000</strong> or your Codespaces forwarded URL).
-      <br/>If you know the URL, paste it below:
+      then open the URL it prints. If you know the URL, paste it below:
     </div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
@@ -1000,443 +554,444 @@ canvas.waveform-canvas { width: 100%; height: 100%; }
 <!-- Analyzing overlay -->
 <div class="analyzing-overlay" id="analyzingOverlay">
   <div class="analyzing-spinner"></div>
-  <p>Analyzing audio stream…</p>
+  <p id="analyzingMsg">Analyzing audio stream…</p>
 </div>
 
 <!-- Toast container -->
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
-/* ════════════════════════════════════════════════════════════
-   CONFIG — smart server discovery
-   Priority: 1) same origin (Codespaces / local Flask)
-             2) http://localhost:5000
-             3) user-supplied URL
-════════════════════════════════════════════════════════════ */
-let API_BASE = "";   // starts as relative (same origin)
+/* ═══════════════════════════════════════════════════════
+   CONFIG & STATE
+═══════════════════════════════════════════════════════ */
+let SERVER_URL = 'http://localhost:5000';
+let currentAudioBlob = null;
+let currentAudioUrl  = null;
+let audioElement     = null;
+let isPlaying        = false;
+let rafId            = null;
+let analyzeStartTime = 0;
 
-/* ════════════════════════════════════════════════════════════
-   STATE
-════════════════════════════════════════════════════════════ */
-let currentAudio = null;
-let currentFile  = null;
-let audioCtx     = null;
-let audioSource  = null;
-let isPlaying    = false;
-let startTime    = 0;
-let pausedAt     = 0;
-let animFrame    = null;
+/* ── Live recording state ── */
+let mediaRecorder    = null;
+let recordedChunks   = [];
+let recordingStream  = null;
+let recTimerInterval = null;
+let recSeconds       = 0;
+let recMeterRAF      = null;
+let recAnalyser      = null;
+let recMeterData     = null;
+const REC_BAR_COUNT  = 32;
 
-/* ════════════════════════════════════════════════════════════
-   SERVER STATUS — auto-discovery
-════════════════════════════════════════════════════════════ */
-
-/** Try to GET /health on a given base URL. Returns true on success. */
-async function pingBase(base, timeoutMs = 3000) {
-  try {
-    const ctrl  = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-    const r     = await fetch(base + "/health", { signal: ctrl.signal });
-    clearTimeout(timer);
-    return r.ok;
-  } catch (_) { return false; }
-}
-
+/* ═══════════════════════════════════════════════════════
+   SERVER CHECK
+═══════════════════════════════════════════════════════ */
 async function checkServer() {
-  const el   = document.getElementById("serverStatus");
-  const text = document.getElementById("serverStatusText");
-  el.className = "server-status checking";
-  text.textContent = "Checking…";
-
-  // 1️⃣  Same origin — works when page IS served by Flask (Codespaces, local)
-  if (await pingBase("")) {
-    API_BASE = "";
-    el.className = "server-status connected";
-    text.textContent = "Server online";
-    hideBanner();
-    return true;
+  const el = document.getElementById('serverStatus');
+  const txt = document.getElementById('serverStatusText');
+  el.className = 'server-status checking';
+  txt.textContent = 'Checking…';
+  try {
+    const r = await fetch(`${SERVER_URL}/health`, { signal: AbortSignal.timeout(4000) });
+    if (r.ok) {
+      el.className = 'server-status connected';
+      txt.textContent = 'Server online';
+      document.getElementById('serverBanner').style.display = 'none';
+    } else { throw new Error(); }
+  } catch {
+    el.className = 'server-status disconnected';
+    txt.textContent = 'Server offline';
+    document.getElementById('serverBanner').style.display = 'flex';
   }
-
-  // 2️⃣  Fallback: classic localhost:5000 (user opened index.html from disk)
-  if (await pingBase("http://localhost:5000")) {
-    API_BASE = "http://localhost:5000";
-    el.className = "server-status connected";
-    text.textContent = "Server online (localhost)";
-    hideBanner();
-    return true;
-  }
-
-  // 3️⃣  Nothing found — show the help banner
-  API_BASE = "";
-  el.className = "server-status disconnected";
-  text.textContent = "Server offline";
-  showBanner();
-  return false;
 }
 
-function showBanner() {
-  document.getElementById("serverBanner").style.display = "flex";
-}
-function hideBanner() {
-  document.getElementById("serverBanner").style.display = "none";
-}
-
-/** User manually supplies their Codespaces / remote URL */
 function applyCustomUrl() {
-  const raw = document.getElementById("customUrlInput").value.trim().replace(/\/$/, "");
-  if (!raw) return;
-  API_BASE = raw;
-  checkServer();
+  const v = document.getElementById('customUrlInput').value.trim().replace(/\/$/, '');
+  if (v) { SERVER_URL = v; checkServer(); }
 }
 
-checkServer();
-setInterval(checkServer, 15000);
-
-/* ════════════════════════════════════════════════════════════
-   FILE HANDLING
-════════════════════════════════════════════════════════════ */
-function handleDragOver(e) {
-  e.preventDefault();
-  document.getElementById("dropZone").classList.add("dragging");
-}
-function handleDragLeave(e) {
-  document.getElementById("dropZone").classList.remove("dragging");
-}
+/* ═══════════════════════════════════════════════════════
+   FILE UPLOAD HANDLERS
+═══════════════════════════════════════════════════════ */
+function handleDragOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('dragging'); }
+function handleDragLeave(e) { document.getElementById('dropZone').classList.remove('dragging'); }
 function handleDrop(e) {
   e.preventDefault();
-  document.getElementById("dropZone").classList.remove("dragging");
-  const file = e.dataTransfer.files[0];
-  if (file) processFile(file);
+  document.getElementById('dropZone').classList.remove('dragging');
+  const f = e.dataTransfer.files[0];
+  if (f) processFile(f);
 }
-function handleFileSelect(e) {
-  const file = e.target.files[0];
-  if (file) processFile(file);
+function handleFileSelect(e) { const f = e.target.files[0]; if (f) processFile(f); }
+
+function processFile(file) {
+  currentAudioBlob = file;
+  currentAudioUrl  = URL.createObjectURL(file);
+  sendToServer(file, file.name);
 }
 
-async function processFile(file) {
-  currentFile = file;
+/* ═══════════════════════════════════════════════════════
+   LIVE RECORDING
+═══════════════════════════════════════════════════════ */
+async function toggleRecording() {
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    stopRecording();
+  } else {
+    await startRecording();
+  }
+}
 
-  // UI feedback
-  const isConnected = await checkServer();
-  if (!isConnected) {
-    showBanner();
-    showToast("Server not reachable — paste your server URL in the banner above.", "error");
+async function startRecording() {
+  // Request mic permission
+  try {
+    recordingStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+  } catch (err) {
+    showToast('Microphone access denied. Please allow mic permissions and try again.', 'error');
     return;
   }
 
-  document.getElementById("analyzingOverlay").classList.add("show");
+  // Build live meter analyser
+  const audioCtx = new AudioContext();
+  const source   = audioCtx.createMediaStreamSource(recordingStream);
+  recAnalyser    = audioCtx.createAnalyser();
+  recAnalyser.fftSize = 64;
+  recMeterData   = new Uint8Array(recAnalyser.frequencyBinCount);
+  source.connect(recAnalyser);
 
-  const t0  = performance.now();
-  const fd  = new FormData();
-  fd.append("audio", file);
+  // Build meter bars
+  const barsEl = document.getElementById('recMeterBars');
+  barsEl.innerHTML = '';
+  for (let i = 0; i < REC_BAR_COUNT; i++) {
+    const b = document.createElement('div');
+    b.className = 'rec-bar';
+    b.style.height = '4px';
+    barsEl.appendChild(b);
+  }
+
+  // Choose best supported MIME
+  const mime = ['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/mp4']
+               .find(m => MediaRecorder.isTypeSupported(m)) || '';
+
+  recordedChunks = [];
+  mediaRecorder  = new MediaRecorder(recordingStream, mime ? { mimeType: mime } : {});
+  mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+  mediaRecorder.onstop = onRecordingStop;
+  mediaRecorder.start(100); // collect every 100 ms
+
+  // UI: recording state
+  const btn = document.getElementById('recordBtn');
+  btn.classList.add('recording');
+  document.getElementById('recordBtnLabel').textContent = 'Stop';
+  document.getElementById('recMeterWrap').classList.add('show');
+
+  // Timer
+  recSeconds = 0;
+  updateRecTimer();
+  recTimerInterval = setInterval(() => { recSeconds++; updateRecTimer(); }, 1000);
+
+  // Meter animation
+  animateMeter();
+}
+
+function stopRecording() {
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+  if (recordingStream) recordingStream.getTracks().forEach(t => t.stop());
+  clearInterval(recTimerInterval);
+  cancelAnimationFrame(recMeterRAF);
+
+  // Reset UI
+  const btn = document.getElementById('recordBtn');
+  btn.classList.remove('recording');
+  document.getElementById('recordBtnLabel').textContent = 'Record Live';
+  document.getElementById('recMeterWrap').classList.remove('show');
+}
+
+function onRecordingStop() {
+  const mime = mediaRecorder.mimeType || 'audio/webm';
+  const blob = new Blob(recordedChunks, { type: mime });
+
+  // Derive a nice filename with timestamp
+  const ext  = mime.includes('ogg') ? 'ogg' : mime.includes('mp4') ? 'mp4' : 'webm';
+  const name = `recording_${new Date().toISOString().replace(/[:.]/g, '-')}.${ext}`;
+
+  currentAudioBlob = blob;
+  currentAudioUrl  = URL.createObjectURL(blob);
+  sendToServer(blob, name);
+}
+
+function updateRecTimer() {
+  const m = Math.floor(recSeconds / 60);
+  const s = String(recSeconds % 60).padStart(2, '0');
+  document.getElementById('recTimer').textContent = `${m}:${s}`;
+}
+
+function animateMeter() {
+  recMeterRAF = requestAnimationFrame(animateMeter);
+  if (!recAnalyser) return;
+  recAnalyser.getByteFrequencyData(recMeterData);
+  const bars = document.querySelectorAll('.rec-bar');
+  const step = Math.floor(recMeterData.length / REC_BAR_COUNT);
+  bars.forEach((bar, i) => {
+    const val  = recMeterData[i * step] || 0;
+    const pct  = (val / 255) * 100;
+    bar.style.height = Math.max(3, pct * 0.28) + 'px';
+    bar.style.opacity = 0.4 + (pct / 100) * 0.6;
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   SEND TO SERVER & RENDER
+═══════════════════════════════════════════════════════ */
+async function sendToServer(blob, filename) {
+  const overlay = document.getElementById('analyzingOverlay');
+  const msg     = document.getElementById('analyzingMsg');
+  overlay.classList.add('show');
+  msg.textContent = 'Analyzing audio stream…';
+  analyzeStartTime = performance.now();
+
+  const fd = new FormData();
+  fd.append('audio', blob, filename);
 
   try {
-    const resp = await fetch(`${API_BASE}/analyze`, { method: "POST", body: fd });
-    if (!resp.ok) {
-      const err = await resp.json();
-      throw new Error(err.error || resp.statusText);
-    }
-    const data = await resp.json();
-    const lat  = Math.round(performance.now() - t0);
-    renderResults(data, file, lat);
-    showToast("Analysis complete ✓", "success");
-  } catch (e) {
-    showToast("Error: " + e.message, "error");
-    console.error(e);
-  } finally {
-    document.getElementById("analyzingOverlay").classList.remove("show");
+    const res = await fetch(`${SERVER_URL}/analyze`, { method: 'POST', body: fd });
+    if (!res.ok) { const j = await res.json(); throw new Error(j.error || `HTTP ${res.status}`); }
+    const data = await res.json();
+    overlay.classList.remove('show');
+    renderResults(data, filename);
+  } catch (err) {
+    overlay.classList.remove('show');
+    showToast(err.message || 'Server error — is app.py running?', 'error');
+    checkServer();
   }
-
-  // Load audio for playback
-  const url = URL.createObjectURL(file);
-  currentAudio = new Audio(url);
-  currentAudio.addEventListener("ended", () => { isPlaying = false; updatePlayIcon(); });
-  drawWaveform(file);
 }
 
-/* ════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    RENDER RESULTS
-════════════════════════════════════════════════════════════ */
-const EMOTION_COLORS = {
-  angry:     "#ff4545",
-  calm:      "#00d4c8",
-  disgust:   "#ffb340",
-  fear:      "#ff4fa0",
-  happy:     "#ffe066",
-  neutral:   "#8b90a8",
-  sad:       "#7b61ff",
-  surprised: "#00e676",
-};
+═══════════════════════════════════════════════════════ */
+function renderResults(data, filename) {
+  const latency = ((performance.now() - analyzeStartTime) / 1000).toFixed(2);
 
-const BAR_COLORS = [
-  "var(--accent)", "var(--cyan)", "var(--pink)", "var(--amber)",
-  "var(--green)", "var(--accent2)", "#ffe066", "var(--red)",
-];
+  document.getElementById('emptyState').style.display  = 'none';
+  document.getElementById('dataPanels').style.display  = '';
 
-function renderResults(data, file, latMs) {
-  document.getElementById("emptyState").style.display  = "none";
-  document.getElementById("dataPanels").style.display  = "block";
-
-  /* ── Danger badge in header ── */
-  const badge = document.getElementById("dangerBadgeHeader");
-  const cl    = data.dominant_danger.toLowerCase();
-  badge.innerHTML = `<span class="danger-badge ${cl}">
-    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-    ${data.dominant_danger}
+  /* Danger badge in header */
+  const isDanger  = data.dominant_danger === 'DANGER';
+  const badgeEl   = document.getElementById('dangerBadgeHeader');
+  badgeEl.innerHTML = `<span class="danger-badge ${isDanger ? 'danger' : 'calm'}">
+    ${isDanger ? '⚠ DANGER' : '✓ CALM'}
   </span>`;
 
-  /* ── Donut ── */
+  /* Donut */
   const conf = data.match_confidence;
-  document.getElementById("confVal").textContent = conf.toFixed(0);
+  document.getElementById('confVal').textContent = conf.toFixed(1);
   const circumference = 2 * Math.PI * 62;
-  const offset = circumference * (1 - conf / 100);
-  document.getElementById("donutFill").style.strokeDasharray  = circumference;
-  document.getElementById("donutFill").style.strokeDashoffset = offset;
-  const fp  = ((1 - conf / 100) * 2).toFixed(2);
-  document.getElementById("fpVal").textContent  = fp + "%";
-  document.getElementById("latVal").textContent = latMs + "ms";
+  const offset = circumference - (conf / 100) * circumference;
+  document.getElementById('donutFill').style.strokeDashoffset = offset;
+  document.getElementById('fpVal').textContent  = (100 - conf).toFixed(1) + '%';
+  document.getElementById('latVal').textContent = latency + 's';
 
-  /* ── Sentiment bars ── */
-  const barsEl = document.getElementById("sentimentBars");
-  barsEl.innerHTML = "";
-  const emotions    = data.emotion_scores;
-  const topEm       = data.dominant_emotion;
-  const clarityPct  = data.articulation_clarity;
-  const stressPct   = data.stress_indicator;
-  const confLevelPct= conf;
-
-  // Build display entries
-  const displayItems = [
-    { label: topEm.charAt(0).toUpperCase() + topEm.slice(1) + " / " + (topEm === "calm" ? "Calm" : "Expression"),
-      value: emotions[topEm], color: EMOTION_COLORS[topEm] || BAR_COLORS[0] },
-    { label: "Confidence Level",   value: confLevelPct,  color: "var(--cyan)" },
-    { label: "Articulation Clarity", value: clarityPct,  color: "var(--pink)" },
-    { label: "Stress Indicators",  value: stressPct,     color: "var(--red)" },
-  ];
-
-  displayItems.forEach(item => {
-    const pct = Math.min(100, Math.max(0, item.value));
-    const div = document.createElement("div");
-    div.className = "bar-item";
-    div.innerHTML = `
+  /* Sentiment bars */
+  const EMOTION_COLORS = {
+    angry:'#ff4545', calm:'#00d4c8', disgust:'#ffb340', fear:'#ff4fa0',
+    happy:'#ffe066', neutral:'#8b90a8', sad:'#7b61ff', surprised:'#00e676'
+  };
+  const scores  = data.emotion_scores;
+  const sorted  = Object.entries(scores).sort((a,b) => b[1]-a[1]);
+  const barsEl  = document.getElementById('sentimentBars');
+  barsEl.innerHTML = sorted.map(([em, pct]) => `
+    <div class="bar-item">
       <div class="bar-header">
-        <span class="bar-name">${item.label}</span>
-        <span class="bar-pct" style="color:${item.color}">${pct.toFixed(0)}%</span>
+        <span class="bar-name">${em}</span>
+        <span class="bar-pct" style="color:${EMOTION_COLORS[em]||'var(--text2)'}">${pct.toFixed(1)}%</span>
       </div>
       <div class="bar-track">
-        <div class="bar-fill" style="background:${item.color}" data-pct="${pct}"></div>
-      </div>`;
-    barsEl.appendChild(div);
-  });
-  requestAnimationFrame(() => {
-    barsEl.querySelectorAll(".bar-fill").forEach(el => {
-      el.style.width = el.dataset.pct + "%";
+        <div class="bar-fill" style="width:${pct}%;background:${EMOTION_COLORS[em]||'var(--accent)'}"></div>
+      </div>
+    </div>`).join('');
+
+  /* Pie chart (danger distribution) */
+  const dangerScores = data.danger_scores;
+  const pieCalmPct   = dangerScores['CALM']   || 0;
+  const pieDangPct   = dangerScores['DANGER'] || 0;
+  const R = 65, cx = 65, cy = 65;
+  function slice(startAngle, pct, color) {
+    if (pct <= 0) return '';
+    if (pct >= 100) return `<circle cx="${cx}" cy="${cy}" r="${R}" fill="${color}"/>`;
+    const endAngle = startAngle + (pct / 100) * 2 * Math.PI;
+    const x1 = cx + R * Math.sin(startAngle);
+    const y1 = cy - R * Math.cos(startAngle);
+    const x2 = cx + R * Math.sin(endAngle);
+    const y2 = cy - R * Math.cos(endAngle);
+    const large = pct > 50 ? 1 : 0;
+    return `<path d="M${cx},${cy} L${x1},${y1} A${R},${R} 0 ${large},1 ${x2},${y2} Z" fill="${color}"/>`;
+  }
+  const calmAngle = 0;
+  const dangAngle = (pieCalmPct / 100) * 2 * Math.PI;
+  document.getElementById('pieSvg').innerHTML =
+    slice(calmAngle, pieCalmPct, '#00e676') + slice(dangAngle, pieDangPct, '#ff4545');
+  document.getElementById('pieMain').textContent = data.dominant_danger;
+  document.getElementById('pieMain').style.color = isDanger ? '#ff4545' : '#00e676';
+  document.getElementById('pieSub').textContent  = 'dominant';
+  document.getElementById('pieLegend').innerHTML = `
+    <div class="legend-item"><div class="legend-dot" style="background:#00e676"></div>CALM ${pieCalmPct.toFixed(1)}%</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ff4545"></div>DANGER ${pieDangPct.toFixed(1)}%</div>`;
+
+  /* Waveform */
+  document.getElementById('waveFileName').textContent = filename;
+  document.getElementById('waveMeta').textContent =
+    `${data.dominant_emotion.toUpperCase()} · clarity ${data.articulation_clarity}% · stress ${data.stress_indicator}%`;
+  document.getElementById('sampleRateVal').textContent = (data.sample_rate / 1000).toFixed(1) + ' kHz';
+  document.getElementById('durationVal').textContent   = data.duration_s.toFixed(2) + 's';
+  document.getElementById('totalTimeLabel').textContent = formatTime(data.duration_s);
+  document.getElementById('playhead').style.display = 'block';
+
+  if (currentAudioUrl) {
+    if (audioElement) { audioElement.pause(); audioElement = null; }
+    audioElement = new Audio(currentAudioUrl);
+    audioElement.ontimeupdate = updatePlayhead;
+    audioElement.onended = () => {
+      isPlaying = false;
+      document.getElementById('playIcon').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    };
+  }
+  drawWaveform();
+
+  /* Emotion timeline */
+  const tl = data.emotion_timeline || [];
+  document.getElementById('timelineCount').textContent = `${tl.length} segments`;
+  document.getElementById('timelineList').innerHTML = tl.map(seg => `
+    <div class="timeline-seg em-${seg.emotion}">
+      <span class="timeline-seg-t">${seg.t.toFixed(1)}s</span>
+      <span class="timeline-seg-em">${seg.emotion}</span>
+      <span style="font-size:.55rem;opacity:.7">${(seg.confidence * 100).toFixed(0)}%</span>
+    </div>`).join('');
+
+  showToast(`Analysis complete · ${data.dominant_emotion} · ${data.dominant_danger}`, 'success');
+}
+
+/* ═══════════════════════════════════════════════════════
+   WAVEFORM DRAWING
+═══════════════════════════════════════════════════════ */
+function drawWaveform() {
+  if (!currentAudioUrl) return;
+  const canvas = document.getElementById('waveformCanvas');
+  const ctx    = canvas.getContext('2d');
+  canvas.width  = canvas.offsetWidth  * devicePixelRatio;
+  canvas.height = canvas.offsetHeight * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const W = canvas.offsetWidth, H = canvas.offsetHeight;
+
+  const audioCtx = new AudioContext();
+  fetch(currentAudioUrl)
+    .then(r => r.arrayBuffer())
+    .then(buf => audioCtx.decodeAudioData(buf))
+    .then(decoded => {
+      const data   = decoded.getChannelData(0);
+      const step   = Math.ceil(data.length / W);
+      const amp    = H / 2;
+      ctx.clearRect(0, 0, W, H);
+      ctx.beginPath();
+      for (let i = 0; i < W; i++) {
+        let min = 1, max = -1;
+        for (let j = 0; j < step; j++) {
+          const d = data[i * step + j] || 0;
+          if (d < min) min = d;
+          if (d > max) max = d;
+        }
+        ctx.moveTo(i, amp + min * amp * 0.9);
+        ctx.lineTo(i, amp + max * amp * 0.9);
+      }
+      ctx.strokeStyle = '#4f6fff';
+      ctx.lineWidth   = 1;
+      ctx.stroke();
+    })
+    .catch(() => {
+      // fallback: draw flat line
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.offsetHeight / 2);
+      ctx.lineTo(canvas.offsetWidth, canvas.offsetHeight / 2);
+      ctx.strokeStyle = '#4f6fff44';
+      ctx.lineWidth = 1;
+      ctx.stroke();
     });
-  });
-
-  /* ── Pie chart (emotion distribution) ── */
-  drawPie(emotions, topEm);
-
-  /* ── Wave metadata ── */
-  document.getElementById("waveFileName").textContent = file.name;
-  const d  = data.duration_s;
-  const sr = data.sample_rate;
-  document.getElementById("waveMeta").textContent =
-    `Duration: ${fmtTime(d)} · ${new Date().toUTCString()}`;
-  document.getElementById("sampleRateVal").textContent =
-    sr >= 1000 ? (sr / 1000) + " kHz" : sr + " Hz";
-  document.getElementById("durationVal").textContent  = fmtTime(d);
-  document.getElementById("totalTimeLabel").textContent = fmtTime(d);
-
-  /* ── Emotion timeline ── */
-  const tl    = data.emotion_timeline;
-  const tlEl  = document.getElementById("timelineList");
-  tlEl.innerHTML = "";
-  document.getElementById("timelineCount").textContent = tl.length + " segments";
-  tl.forEach(seg => {
-    const span = document.createElement("div");
-    const em   = seg.emotion.toLowerCase();
-    span.className = `timeline-seg em-${em}`;
-    span.innerHTML = `<span class="timeline-seg-t">${fmtTime(seg.t)}</span>
-                      <span class="timeline-seg-em">${seg.emotion}</span>
-                      <span style="font-size:.55rem;opacity:.7">${(seg.confidence*100).toFixed(0)}%</span>`;
-    tlEl.appendChild(span);
-  });
 }
 
-/* ════════════════════════════════════════════════════════════
-   PIE CHART
-════════════════════════════════════════════════════════════ */
-function drawPie(scores, dominant) {
-  const svg     = document.getElementById("pieSvg");
-  const legend  = document.getElementById("pieLegend");
-  const cx = 65, cy = 65, r = 52;
-  svg.innerHTML = "";
-  legend.innerHTML = "";
-
-  // Filter top emotions
-  const entries = Object.entries(scores).sort((a,b) => b[1]-a[1]);
-  const total   = entries.reduce((s,[,v]) => s+v, 0) || 1;
-
-  let startAngle = -Math.PI / 2;
-  entries.forEach(([em, pct], i) => {
-    const fraction = pct / 100;
-    if (fraction < 0.005) return;
-    const angle = fraction * 2 * Math.PI;
-    const endAngle = startAngle + angle;
-    const x1 = cx + r * Math.cos(startAngle);
-    const y1 = cy + r * Math.sin(startAngle);
-    const x2 = cx + r * Math.cos(endAngle);
-    const y2 = cy + r * Math.sin(endAngle);
-    const large = angle > Math.PI ? 1 : 0;
-    const color = EMOTION_COLORS[em] || BAR_COLORS[i % BAR_COLORS.length];
-
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    const inner = 30;
-    const ix1 = cx + inner * Math.cos(startAngle);
-    const iy1 = cy + inner * Math.sin(startAngle);
-    const ix2 = cx + inner * Math.cos(endAngle);
-    const iy2 = cy + inner * Math.sin(endAngle);
-    path.setAttribute("d",
-      `M ${ix1} ${iy1} A ${inner} ${inner} 0 ${large} 1 ${ix2} ${iy2}
-       L ${x2} ${y2} A ${r} ${r} 0 ${large} 0 ${x1} ${y1} Z`);
-    path.setAttribute("fill", color);
-    path.setAttribute("opacity", em === dominant ? "1" : "0.55");
-    svg.appendChild(path);
-
-    startAngle = endAngle;
-
-    // Legend (top 3)
-    if (i < 3) {
-      const li = document.createElement("div");
-      li.className = "legend-item";
-      li.innerHTML = `<span class="legend-dot" style="background:${color}"></span>
-                      <span>${em.charAt(0).toUpperCase()+em.slice(1)} (${pct.toFixed(0)}%)</span>`;
-      legend.appendChild(li);
-    }
-  });
-
-  document.getElementById("pieMain").textContent = dominant.charAt(0).toUpperCase() + dominant.slice(1);
-  document.getElementById("pieSub").textContent  = "Dominant";
-}
-
-/* ════════════════════════════════════════════════════════════
-   WAVEFORM
-════════════════════════════════════════════════════════════ */
-async function drawWaveform(file) {
-  const canvas = document.getElementById("waveformCanvas");
-  const ctx2d  = canvas.getContext("2d");
-  const wrap   = canvas.parentElement;
-  canvas.width  = wrap.offsetWidth * devicePixelRatio;
-  canvas.height = wrap.offsetHeight * devicePixelRatio;
-  ctx2d.scale(devicePixelRatio, devicePixelRatio);
-  const W = wrap.offsetWidth, H = wrap.offsetHeight;
-
-  // Decode audio buffer
-  const ab  = await file.arrayBuffer();
-  const ac  = new (window.AudioContext || window.webkitAudioContext)();
-  const buf = await ac.decodeAudioData(ab);
-  const raw = buf.getChannelData(0);
-  const step = Math.ceil(raw.length / W);
-
-  ctx2d.clearRect(0,0,W,H);
-  for (let i = 0; i < W; i++) {
-    let min = 1, max = -1;
-    for (let j = 0; j < step; j++) {
-      const v = raw[i * step + j] || 0;
-      if (v < min) min = v;
-      if (v > max) max = v;
-    }
-    const yLo = (1 + min) / 2 * H;
-    const yHi = (1 + max) / 2 * H;
-    const t   = i / W;
-    const hue = 220 + t * 40;
-    const isCurrent = Math.abs(t - 0.4) < 0.05;
-    ctx2d.strokeStyle = isCurrent ? `hsl(${hue},80%,75%)` : `hsl(${hue},50%,35%)`;
-    ctx2d.lineWidth   = 2;
-    ctx2d.beginPath();
-    ctx2d.moveTo(i, yLo);
-    ctx2d.lineTo(i, yHi);
-    ctx2d.stroke();
-  }
-}
-
-/* ════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    PLAYBACK
-════════════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════ */
 function togglePlay() {
-  if (!currentAudio) return;
+  if (!audioElement) return;
   if (isPlaying) {
-    currentAudio.pause();
+    audioElement.pause();
     isPlaying = false;
+    document.getElementById('playIcon').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
   } else {
-    currentAudio.play();
+    audioElement.play();
     isPlaying = true;
-    updatePlayhead();
+    document.getElementById('playIcon').innerHTML =
+      '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
   }
-  updatePlayIcon();
 }
-function updatePlayIcon() {
-  const icon = document.getElementById("playIcon");
-  icon.outerHTML = isPlaying
-    ? `<svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`
-    : `<svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
-}
+
 function updatePlayhead() {
-  if (!currentAudio || !isPlaying) return;
-  const pct = currentAudio.currentTime / currentAudio.duration;
-  const wrap = document.querySelector(".waveform-canvas-wrap");
-  const ph   = document.getElementById("playhead");
-  ph.style.display = "block";
-  ph.style.left    = (pct * wrap.offsetWidth) + "px";
-  document.getElementById("currentPosLabel").textContent =
-    "Current Position: " + fmtTime(currentAudio.currentTime);
-  requestAnimationFrame(updatePlayhead);
+  if (!audioElement) return;
+  const pct  = audioElement.currentTime / (audioElement.duration || 1);
+  const wrap  = document.querySelector('.waveform-canvas-wrap');
+  const ph    = document.getElementById('playhead');
+  ph.style.left = (pct * wrap.offsetWidth) + 'px';
+  document.getElementById('currentPosLabel').textContent =
+    'Current Position: ' + formatTime(audioElement.currentTime);
 }
+
+/* ═══════════════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════════════ */
+function formatTime(s) {
+  const h  = Math.floor(s / 3600);
+  const m  = Math.floor((s % 3600) / 60);
+  const ss = Math.floor(s % 60);
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+}
+
 function downloadAudio() {
-  if (!currentFile) return;
-  const a = document.createElement("a");
-  a.href  = URL.createObjectURL(currentFile);
-  a.download = currentFile.name;
+  if (!currentAudioUrl) return;
+  const a    = document.createElement('a');
+  a.href     = currentAudioUrl;
+  a.download = document.getElementById('waveFileName').textContent || 'audio';
   a.click();
 }
 
-/* ════════════════════════════════════════════════════════════
-   HELPERS
-════════════════════════════════════════════════════════════ */
-function fmtTime(sec) {
-  const h = Math.floor(sec / 3600);
-  const m = Math.floor((sec % 3600) / 60);
-  const s = Math.floor(sec % 60);
-  return `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-}
-
-function showToast(msg, type = "") {
-  const c   = document.getElementById("toastContainer");
-  const div = document.createElement("div");
-  div.className = `toast ${type}`;
-  div.innerHTML = `<span>${msg}</span>`;
-  c.appendChild(div);
-  setTimeout(() => div.remove(), 4000);
+function showToast(msg, type='') {
+  const c = document.getElementById('toastContainer');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 4500);
 }
 
 function resetSession() {
-  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-  isPlaying = false;
-  currentFile = null;
-  document.getElementById("emptyState").style.display  = "flex";
-  document.getElementById("dataPanels").style.display  = "none";
-  document.getElementById("dangerBadgeHeader").innerHTML = "";
-  document.getElementById("fileInput").value = "";
+  if (audioElement) { audioElement.pause(); audioElement = null; }
+  if (mediaRecorder && mediaRecorder.state === 'recording') stopRecording();
+  currentAudioBlob = null;
+  currentAudioUrl  = null;
+  isPlaying        = false;
+  document.getElementById('emptyState').style.display  = '';
+  document.getElementById('dataPanels').style.display  = 'none';
+  document.getElementById('dangerBadgeHeader').innerHTML = '';
+  document.getElementById('fileInput').value = '';
 }
 
-function showPage(name) {
-  document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
-  event.currentTarget.classList.add("active");
-  if (name !== "dashboard") {
-    showToast(`${name.charAt(0).toUpperCase()+name.slice(1)} page — coming soon`, "");
-  }
+function showPage(page) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  if (page !== 'dashboard') showToast(`${page.charAt(0).toUpperCase()+page.slice(1)} — coming soon`, '');
 }
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════ */
+checkServer();
+setInterval(checkServer, 30000);
 </script>
 </body>
 </html>
